@@ -7,10 +7,11 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Server extends Thread{
+
 
 
     public Server() throws IOException {
@@ -23,8 +24,8 @@ public class Server extends Thread{
         try {
             int cont = 0;
             while (true) {
-               //Acepta jugadores hasta que el controlador del servidor decida o hasta que sean 6 jugadores
-                if (cont==6 || InfCompartido.comienzaPartida){
+                //Acepta jugadores hasta que el controlador del servidor decida o hasta que sean 6 jugadores
+                if (cont==6 || InfCompartido.comienzaPartida == true){
                     System.out.println("Comeinza Partida");
                     break;
                 }
@@ -47,12 +48,16 @@ class ServerHilo extends Thread {
 
     private Socket socket;
     private Scanner scan;
+    private DataOutputStream out;
+
     public ServerHilo() {
     }
 
     public ServerHilo(Socket socket, Scanner scan, DataOutputStream out) {
         this.socket = socket;
         this.scan = scan;
+        this.out = out;
+
     }
 
     @Override
@@ -94,8 +99,29 @@ class ServerHilo extends Thread {
     public String escritor() {
         String texto = "";
         for (int i = 0; i < InfCompartido.numBingo.size(); i++) {
-            texto += InfCompartido.numBingo.get(i) + " ";
+            texto = texto + InfCompartido.numBingo.get(i) + " ";
         }
         return texto;
+    }
+    public boolean compador(int i) {
+        if (i == 0){
+            return false;
+        }
+        if (InfCompartido.numBingo.contains(i)){
+            return true;
+        }
+        else
+            return false;
+    }
+    public List<Integer> transformador(String cadena){
+        List<Integer> nueva_cadena = new ArrayList<>();
+        List<String> list = Arrays.asList( "-1" , "2", "3", "4", "5" );
+
+        List<Integer> newList = list.stream()
+                .map(s -> Integer.parseInt(s))
+                .collect(Collectors.toList());
+
+        System.out.println(newList);
+        return nueva_cadena;
     }
 }

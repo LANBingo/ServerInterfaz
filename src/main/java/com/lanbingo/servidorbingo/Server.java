@@ -10,12 +10,13 @@ import java.util.stream.Collectors;
 
 public class Server extends Thread{
 
-    private Socket jugador = null;
-    private final List<Socket> LISTA_DE_ENVIO;
-    class HacerJugadores extends Thread{
+    private Socket jugador = null; // Socket del jugador que llama al servidor
+    private final List<Socket> LISTA_DE_ENVIO; // Lista de socket que usaremos mas tarde
+    class HacerJugadores extends Thread{ //Clase para la Generacion de sockets de los jugadores
         @Override
         public void run() {
             try {
+                //El socket es aceptado por el servidor y informa de la conexion con un jugador
                 jugador = InfCompartido.listener.accept();
                 System.out.println("Jugador aceptado");
             } catch (IOException e) {
@@ -26,37 +27,40 @@ public class Server extends Thread{
 
 
     public Server() throws IOException {
-        InfCompartido.listener = new ServerSocket(5000);
+        //Inicializacion del servidor en el puerto designado en este caso
+        // y de la lista que guardará los sockets de los jugadores
+        InfCompartido.listener = new ServerSocket(InfCompartido.puerto);
         this.LISTA_DE_ENVIO = new ArrayList<>();
     }
 
-    //Se conectan los jugadores y se mandan al hilo para que tengan la comunicacion de la partida
-    @Override
+    @Override //Metodo principal que acepta y se mandan al hilo para que tengan la comunicacion
+    // de la partida cuando la partida comienza deja de aceptar jugadores
     public void run() {
         try {
-            int cont = 0;
+            //IP y puerto que deben ingresar los jugadores en la app movil
+            System.out.println("IP conexion: " + InetAddress.getLocalHost());
+            System.out.println("Puerto conexion: " + InfCompartido.puerto);
             while (true) {
-                //Acepta jugadores hasta que el controlador del servidor decida o hasta que sean 6 jugadores
-
-                System.out.println("Puerto: " + InetAddress.getLocalHost());
-                //Socket socket = InfCompartido.listener.accept();
-                HacerJugadores hacerJugadores = new HacerJugadores();
+                //Socket socket = InfCompartido.listener.accept(); Linea de prueba
+                HacerJugadores hacerJugadores = new HacerJugadores();//Inicio del hilo para comenzar a aceptar jugadores
                 hacerJugadores.start();
-                while (jugador == null || InfCompartido.comienzaPartida){}
+                while (jugador == null && !InfCompartido.comienzaPartida){} //Para el hilo hasta que se une un jugador
+                // o la partida arranca
                 if (jugador == null){
                     System.out.println("Comienza Partida");
                     comenzarBingo();
-                    HacerJugadores.interrupted();
+                    HacerJugadores.interrupted();//Se debe actualizar
                     break;
                 }
-                while (jugador.isConnected()){
+                while (jugador.isConnected()){//Cuando se conecta el jugador en la la entrada de datos
                     Scanner sc = new Scanner(jugador.getInputStream());
                     if (sc.hasNextLine()){
-                        LISTA_DE_ENVIO.add(jugador);
-                        System.out.println("Conectado: " + sc.nextLine());
-                        ServerHilo serverHilo = new ServerHilo(jugador,sc);
+                        LISTA_DE_ENVIO.add(jugador);//El socket del jugador se añade a la lista
+                        System.out.println("Conectado: " + sc.nextLine()); //Nombre del jugador conectado
+                        ServerHilo serverHilo = new ServerHilo(jugador,sc);//Pasa el jugador y su socket a
+                        // la conexion de la partida
                         serverHilo.start();
-                        cont++;
+                        InfCompartido.countJuadores++;//La cuenta de jugadores aumenta en 1
                         break;
                     }
                 }
@@ -68,11 +72,12 @@ public class Server extends Thread{
             e.printStackTrace();
         }
     }
-    public void comenzarBingo(){
+    public void comenzarBingo(){//Metodo que comienza el bingo mandando a todos
+        // los sockets el indicador de comienzo de la partida (true)
        LISTA_DE_ENVIO.stream().forEach(socket -> {
            PrintWriter printWriter = null;
            try {
-               printWriter = new PrintWriter(socket.getOutputStream());
+               printWriter = new PrintWriter(socket.getOutputStream(),true);
            } catch (IOException e) {
                e.printStackTrace();
                return;
@@ -89,31 +94,35 @@ class ServerHilo extends Thread {
     private PrintWriter pw;
 
 
-    public ServerHilo(Socket socket, Scanner scan) throws IOException {
+    public ServerHilo(Socket socket, Scanner scan) throws IOException {//Recibe el socket y el scaner del
+        // servidor principal en el constructor
         this.socket = socket;
         this.scan = scan;
-        this.pw = new PrintWriter(socket.getOutputStream(),true);
+        this.pw = new PrintWriter(socket.getOutputStream(),true);//Inicializa el printer para el
+        // envio de datos al jugador
 
     }
 
     @Override
     public void run() {
         try {
-            boolean error = false;
+            boolean error = false;//Boolenao que devuelve el resultado de la comparacion de las lineas
             scan = new Scanner(socket.getInputStream());
             while (socket.isConnected()) {
 
                 while (scan.hasNextLine()) {
                     String msg = scan.nextLine();
-                    if(msg.isEmpty()){
+                    if(msg.isEmpty()){//No se ha ne viado nada
                         System.out.println("Fallo en el envio de datos");
                         break;
                     }
-                    System.out.println(msg);
-                    msg = msg.substring(1, msg.length()-1);
-                    String[] str = msg.split(", ");
+                    System.out.println(msg);//Escribe la cadena enviada por el usuario en el run
+                    msg = msg.substring(1, msg.length()-1);// Saca las llaves de la cadena recibida
+                    String[] str = msg.split(", ");// crea un array de strings separado por las ", "
                     for (String num: str) {
-                        int numero = Integer.parseInt(num);
+                        int numero = Integer.parseInt(num);//Transforma cada string del array en
+                        // interger para compararlo con la lista de los numeros sacados por el bingo uno a uno
+                        //Si algun numero no esta en la lista devolverá un false al jugador
                         if (numero == 0){
                             continue;
                         }
@@ -128,56 +137,18 @@ class ServerHilo extends Thread {
                     } else {
                         pw.println(true);
                         //pw.println("false")
-                    }
+                    }//Salida de la partida
                     if (msg.equals("Exit")){
                         scan.close();
                     }
+
                 }
                 Thread.sleep(3000);
-                pw.println("Close");
+                pw.println("Close");//Cierre del jugador y servidor
             }
             socket.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public String escritor() {
-        String texto = "";
-        for (int i = 0; i < InfCompartido.numBingo.size(); i++) {
-            texto = texto + InfCompartido.numBingo.get(i) + " ";
-        }
-        return texto;
-    }
-    public boolean compador(int i) {
-        if (i == 0){
-            return false;
-        }
-        if (InfCompartido.numBingo.contains(i)){
-            return true;
-        }
-        else
-            return false;
-    }
-    public List<Integer> transformador(String cadeena){
-        List<Integer> nueva_cadena = new ArrayList<>();
-        List<String> list = Arrays.asList( "-1" , "2", "3", "4", "5" );
-        // https://parzibyte.me/blog/2019/02/19/leer-datos-introducidos-por-usuario-teclado-java/
-        String cadena = "Hola mundo, programando en Java desde parzibyte.me";
-        // El contador de espacios
-        int cantidadDeEspacios = 0;
-        // Recorremos la cadena:
-        for (int i = 0; i < cadena.length(); i++) {
-            // Si el carácter en [i] es un espacio (' ') aumentamos el contador
-
-        }
-        // Finalmente lo imprimimos
-        System.out.println("La cantidad de espacios es: " + cantidadDeEspacios);
-        List<Integer> newList = list.stream()
-                .map(s -> Integer.parseInt(s))
-                .collect(Collectors.toList());
-
-        System.out.println(newList);
-        return nueva_cadena;
     }
 }

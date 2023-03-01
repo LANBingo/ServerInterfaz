@@ -11,12 +11,13 @@ import java.util.stream.Collectors;
 public class Server extends Thread{
 
     private Socket jugador = null;
-    private List<Socket> litaEnvio;
+    private final List<Socket> LISTA_DE_ENVIO;
     class HacerJugadores extends Thread{
         @Override
         public void run() {
             try {
                 jugador = InfCompartido.listener.accept();
+                System.out.println("Jugador aceptado");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -26,7 +27,7 @@ public class Server extends Thread{
 
     public Server() throws IOException {
         InfCompartido.listener = new ServerSocket(5000);
-        this.litaEnvio = new ArrayList<>();
+        this.LISTA_DE_ENVIO = new ArrayList<>();
     }
 
     //Se conectan los jugadores y se mandan al hilo para que tengan la comunicacion de la partida
@@ -48,13 +49,19 @@ public class Server extends Thread{
                     HacerJugadores.interrupted();
                     break;
                 }
-                litaEnvio.add(jugador);
-                Scanner sc = new Scanner(jugador.getInputStream());
-                System.out.println("Conectado: " + jugador.getInputStream());
-                ServerHilo serverHilo = new ServerHilo(jugador,sc);
-                serverHilo.start();
+                while (jugador.isConnected()){
+                    Scanner sc = new Scanner(jugador.getInputStream());
+                    if (sc.hasNextLine()){
+                        LISTA_DE_ENVIO.add(jugador);
+                        System.out.println("Conectado: " + sc.nextLine());
+                        ServerHilo serverHilo = new ServerHilo(jugador,sc);
+                        serverHilo.start();
+                        cont++;
+                        break;
+                    }
+                }
                 jugador = null;
-                cont++;
+
             }
 
         } catch (Exception e) {
@@ -62,16 +69,15 @@ public class Server extends Thread{
         }
     }
     public void comenzarBingo(){
-       litaEnvio.stream().forEach(socket -> {
+       LISTA_DE_ENVIO.stream().forEach(socket -> {
            PrintWriter printWriter = null;
            try {
                printWriter = new PrintWriter(socket.getOutputStream());
            } catch (IOException e) {
                e.printStackTrace();
-
+               return;
            }
            printWriter.println(true);
-
        });
     }
 
@@ -95,10 +101,9 @@ class ServerHilo extends Thread {
         try {
             boolean error = false;
             scan = new Scanner(socket.getInputStream());
-            System.out.println("Conectado: " + socket.getInputStream());
             while (socket.isConnected()) {
-                while (scan.hasNextLine()) {
 
+                while (scan.hasNextLine()) {
                     String msg = scan.nextLine();
                     if(msg.isEmpty()){
                         System.out.println("Fallo en el envio de datos");

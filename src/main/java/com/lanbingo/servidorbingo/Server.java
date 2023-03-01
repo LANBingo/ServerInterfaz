@@ -37,7 +37,7 @@ public class Server extends Thread{
     public void run() {
         try {
             //IP y puerto que deben ingresar los jugadores en la app movil
-            System.out.println("IP conexion: " + InetAddress.getLocalHost());
+            System.out.println("IP conexion: " + InetAddress.getLocalHost().getHostAddress());
             System.out.println("Puerto conexion: " + InfCompartido.PUERTO);
             while (true) {
                 //Socket socket = InfCompartido.listener.accept(); Linea de prueba
@@ -48,12 +48,14 @@ public class Server extends Thread{
                 if (jugador == null){
                     System.out.println("Comienza Partida");
                     envioGlobal(true);
-                    HacerJugadores.interrupted();//Se debe actualizar
+                    hacerJugadores.interrupt();//Corta el hilo de aceptar jugadores
+                    System.out.println("Ya no se aceptan mas jugadores");
                     break;
                 }
                 while (jugador.isConnected()){//Cuando se conecta el jugador en la la entrada de datos
                     Scanner sc = new Scanner(jugador.getInputStream());
                     if (sc.hasNextLine()){
+                        jugador.getInetAddress().getAddress();
                         InfCompartido.LISTA_DE_ENVIO.add(jugador);//El socket del jugador se añade a la lista
                         String nombre = sc.nextLine();
                         InfCompartido.jugadores.put(jugador,nombre);

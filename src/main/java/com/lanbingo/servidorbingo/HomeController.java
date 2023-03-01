@@ -5,12 +5,17 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.Inet4Address;
+import java.net.InetAddress;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
@@ -18,6 +23,13 @@ public class HomeController implements Initializable {
     public TextField txNumPlayer;
     @FXML
     private ComboBox<String> cbxMaxPoints;
+
+    @FXML
+    private Button btComenzar;
+    @FXML
+    private Label laIP;
+    @FXML
+    private Label laPuerto;
 
 
     @FXML
@@ -42,9 +54,20 @@ public class HomeController implements Initializable {
         items.addAll("3", "6", "9", "12", "15");
         cbxMaxPoints.setItems(items);
         txNumPlayer.setText("0");
+        try {
+            laIP.setText(InetAddress.getLocalHost().getHostAddress() +"");
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
+        }
+        laPuerto.setText(InfCompartido.PUERTO + "");
     }
     @FXML
     protected void setCbxMaxPoints(ActionEvent actionEvent) throws Exception {
         InfCompartido.maxPoints = Integer.parseInt(cbxMaxPoints.getSelectionModel().getSelectedItem());
+    }
+    @FXML
+    protected void primerEstilo(ActionEvent event){
+        btComenzar.getStylesheets().clear();
+        btComenzar.getStylesheets().add("/estilos/estilo1.css");
     }
 }

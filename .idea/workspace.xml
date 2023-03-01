@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="ServidorBingo:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aa99b5d5-123f-4987-9716-eb38d8f9e789" name="Changes" comment="Comentarios del servidor">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/ServidorBingo_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/estilos/estilo1.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/InfCompartido.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/InfCompartido.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/PartidaControler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/PartidaControler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/lanbingo/servidorbingo/home-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/lanbingo/servidorbingo/home-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/lanbingo/servidorbingo/partida-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/lanbingo/servidorbingo/partida-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,17 +41,25 @@
     </option>
   </component>
   <component name="ProjectId" id="2MNtPrK5bYc8iHybmbTVcje8lu8" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/peter/Documents/DAM/1ºAño/IdeaProjects/ProAct7.11Regex&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "C:/Users/peter/Documents/DAM/1ºAño/IdeaProjects/ProAct7.11Regex",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\peter\IdeaProjects\Bingo\ServerInterfaz\src\main\resources\raw" />
@@ -125,6 +144,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Server Interfaz Subido" />
     <MESSAGE value="Interfaz" />
     <MESSAGE value="Conexion" />

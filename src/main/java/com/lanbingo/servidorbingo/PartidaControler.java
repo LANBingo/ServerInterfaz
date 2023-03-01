@@ -16,6 +16,7 @@ public class PartidaControler implements Initializable {
     private TextArea taNumbers;
     @FXML
     private Label laNum;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         InfCompartido.numBingo = new ArrayList<>();//Inicializadion de la lista de numeros de la partida

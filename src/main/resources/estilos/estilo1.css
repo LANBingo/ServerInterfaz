@@ -1,0 +1,25 @@
+
+Button { -fx-background-color: #008287;
+         -fx-border-color: #FFFFFF;
+         -fx-border-width: 2;
+         -fx-text-fill: #FFFFFF;
+         -fx-font-family: "Times New Roman";
+         -fx-font-style: italic;
+         -fx-font-size: 20px;
+         -fx-background-radius: 10 10 10 10;
+         -fx-border-radius: 10 10 10 10;
+}
+Label{
+        -fx-text-fill:#ff1414
+
+}
+#titulo{
+    -fx-font: bold italic 40pt Arial;
+    -fx-text-fill: blue;
+    -fx-effect: dropshadow(one-pass-box, blue, 8, 0.0, 2, 0);
+       }
+
+Button:pressed { -fx-background-color: #FFFFFF;
+	-fx-text-fill: #000000;
+	-fx-font-weight: bold;
+}

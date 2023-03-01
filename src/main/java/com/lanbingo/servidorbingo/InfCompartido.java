@@ -16,8 +16,12 @@ public abstract class InfCompartido {
     static int countJuadores; // cuenta de los jugadores unidos a la partida
     static int maxPoints = 3; //puntos maximos para acabar la partida inicializado a 3
     static ServerSocket listener = null;//Servidor del socket creado en la clase compartida
-    static Map<Socket,Integer> jugadores = new HashMap<>();//Map que contiene los jugadores unidos a la partida
+    static Map<Socket,String> jugadores = new HashMap<>();//Map que contiene los jugadores unidos a la partida
     static boolean comienzaPartida = false;//booleno que inicia la partida
-    static int puerto = 5000;//puerto de entrada del socket
+    static final int PUERTO = 5000;
+    static List<Socket> LISTA_DE_ENVIO;
+
+    static String RondaNombreWinner;
+
 
 }

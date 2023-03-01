@@ -4,16 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aa99b5d5-123f-4987-9716-eb38d8f9e789" name="Changes" comment="Conexion de servidor con interfaz">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/raw/logo.png" afterDir="false" />
+    <list default="true" id="aa99b5d5-123f-4987-9716-eb38d8f9e789" name="Changes" comment="Comentarios del servidor">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/HomeView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/HomeView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/InfCompartido.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/InfCompartido.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/PartidaControler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/PartidaControler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/PartidaView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/PartidaView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/lanbingo/servidorbingo/home-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/lanbingo/servidorbingo/home-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,13 +34,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/peter/Documents/DAM/1ºAño/IdeaProjects/ProAct7.11Regex"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/peter/Documents/DAM/1ºAño/IdeaProjects/ProAct7.11Regex&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\peter\IdeaProjects\Bingo\ServerInterfaz\src\main\resources\raw" />
@@ -109,7 +103,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677633334363</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Comentarios del servidor">
+      <created>1677645158707</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1677645158707</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -128,6 +129,7 @@
     <MESSAGE value="Interfaz" />
     <MESSAGE value="Conexion" />
     <MESSAGE value="Conexion de servidor con interfaz" />
-    <option name="LAST_COMMIT_MESSAGE" value="Conexion de servidor con interfaz" />
+    <MESSAGE value="Comentarios del servidor" />
+    <option name="LAST_COMMIT_MESSAGE" value="Comentarios del servidor" />
   </component>
 </project>

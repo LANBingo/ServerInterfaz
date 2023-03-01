@@ -6,12 +6,11 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Server extends Thread{
 
     private Socket jugador = null; // Socket del jugador que llama al servidor
-    private final List<Socket> LISTA_DE_ENVIO; // Lista de socket que usaremos mas tarde
+     // Lista de socket que usaremos mas tarde
     class HacerJugadores extends Thread{ //Clase para la Generacion de sockets de los jugadores
         @Override
         public void run() {
@@ -29,8 +28,8 @@ public class Server extends Thread{
     public Server() throws IOException {
         //Inicializacion del servidor en el puerto designado en este caso
         // y de la lista que guardará los sockets de los jugadores
-        InfCompartido.listener = new ServerSocket(InfCompartido.puerto);
-        this.LISTA_DE_ENVIO = new ArrayList<>();
+        InfCompartido.listener = new ServerSocket(InfCompartido.PUERTO);
+        InfCompartido.LISTA_DE_ENVIO = new ArrayList<>();
     }
 
     @Override //Metodo principal que acepta y se mandan al hilo para que tengan la comunicacion
@@ -39,7 +38,7 @@ public class Server extends Thread{
         try {
             //IP y puerto que deben ingresar los jugadores en la app movil
             System.out.println("IP conexion: " + InetAddress.getLocalHost());
-            System.out.println("Puerto conexion: " + InfCompartido.puerto);
+            System.out.println("Puerto conexion: " + InfCompartido.PUERTO);
             while (true) {
                 //Socket socket = InfCompartido.listener.accept(); Linea de prueba
                 HacerJugadores hacerJugadores = new HacerJugadores();//Inicio del hilo para comenzar a aceptar jugadores
@@ -48,15 +47,17 @@ public class Server extends Thread{
                 // o la partida arranca
                 if (jugador == null){
                     System.out.println("Comienza Partida");
-                    comenzarBingo();
+                    envioGlobal(true);
                     HacerJugadores.interrupted();//Se debe actualizar
                     break;
                 }
                 while (jugador.isConnected()){//Cuando se conecta el jugador en la la entrada de datos
                     Scanner sc = new Scanner(jugador.getInputStream());
                     if (sc.hasNextLine()){
-                        LISTA_DE_ENVIO.add(jugador);//El socket del jugador se añade a la lista
-                        System.out.println("Conectado: " + sc.nextLine()); //Nombre del jugador conectado
+                        InfCompartido.LISTA_DE_ENVIO.add(jugador);//El socket del jugador se añade a la lista
+                        String nombre = sc.nextLine();
+                        InfCompartido.jugadores.put(jugador,nombre);
+                        System.out.println("Conectado: " + nombre); //Nombre del jugador conectado
                         ServerHilo serverHilo = new ServerHilo(jugador,sc);//Pasa el jugador y su socket a
                         // la conexion de la partida
                         serverHilo.start();
@@ -72,9 +73,9 @@ public class Server extends Thread{
             e.printStackTrace();
         }
     }
-    public void comenzarBingo(){//Metodo que comienza el bingo mandando a todos
+    public static void envioGlobal(Boolean envio){//Metodo que comienza el bingo mandando a todos
         // los sockets el indicador de comienzo de la partida (true)
-       LISTA_DE_ENVIO.stream().forEach(socket -> {
+       InfCompartido.LISTA_DE_ENVIO.stream().forEach(socket -> {
            PrintWriter printWriter = null;
            try {
                printWriter = new PrintWriter(socket.getOutputStream(),true);
@@ -82,7 +83,7 @@ public class Server extends Thread{
                e.printStackTrace();
                return;
            }
-           printWriter.println(true);
+           printWriter.println(envio.booleanValue());
        });
     }
 
@@ -111,6 +112,7 @@ class ServerHilo extends Thread {
             while (socket.isConnected()) {
 
                 while (scan.hasNextLine()) {
+                    Server.envioGlobal(true);
                     String msg = scan.nextLine();
                     if(msg.isEmpty()){//No se ha ne viado nada
                         System.out.println("Fallo en el envio de datos");
@@ -132,10 +134,15 @@ class ServerHilo extends Thread {
                         }
                     }
                     if (error) {
-                        pw.println(false);
-                        //pw.println("true")
+                        Server.envioGlobal(false);
+                        System.out.println(false);
                     } else {
-                        pw.println(true);
+                        Server.envioGlobal(true);
+                        System.out.println(true);
+                        InfCompartido.RondaNombreWinner=InfCompartido.jugadores.get(socket);
+                        System.out.println(InfCompartido.RondaNombreWinner); //Para probar si puedo imprimir el
+                        // nombre del ganador, nom ge acuerdo de si era justo asi como sacaba el value de una variable
+                        //Ahora lo cambiaré por una ventana nueve emergente
                         //pw.println("false")
                     }//Salida de la partida
                     if (msg.equals("Exit")){

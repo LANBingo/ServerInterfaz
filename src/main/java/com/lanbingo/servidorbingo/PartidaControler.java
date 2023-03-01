@@ -2,6 +2,7 @@ package com.lanbingo.servidorbingo;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
 import java.net.URL;
@@ -12,6 +13,9 @@ public class PartidaControler implements Initializable {
 
     @FXML
     private TextArea taNumbers;
+
+    @FXML
+    private Label laNum;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         InfCompartido.numBingo = new ArrayList<>();
@@ -31,7 +35,7 @@ public class PartidaControler implements Initializable {
                         InfCompartido.numBingo.size() ==90){
                     texto = texto + "\n";
                 }
-
+                laNum.setText(numGenerado+ "");
                 texto =texto + InfCompartido.numBingo.get(InfCompartido.numBingo.size()-1).toString() + " ";
                 this.taNumbers.setText(texto);
                 break;
@@ -39,7 +43,7 @@ public class PartidaControler implements Initializable {
         }
     }
     public int generaNumeroAleatorio() {
-        int num = (int)Math.floor(Math.random() * (double)(100 - 1 + 1) + (double)1);
+        int num = (int)Math.floor(Math.random() * (double)(90 - 1 + 1) + (double)1);
         return num;
     }
 }

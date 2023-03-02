@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.lanbingo.servidorbingo.GanadorView"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="419.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lanbingo.servidorbingo.GanadorControler">
+   <children>
+      <Label id="titulo" fx:id="laTituloWin" layoutX="233.0" layoutY="52.0" stylesheets="@../../../estilos/estilo1.css" text="LanBingo" />
+      <Label layoutX="54.0" layoutY="157.0" text="El ganador de la ronda es" />
+      <Label fx:id="laGanador" layoutX="79.0" layoutY="231.0" stylesheets="@../../../estilos/estilo2.css" text="Label">
+         <font>
+            <Font size="36.0" />
+         </font></Label>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="300.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../raw/sopla.png" />
+         </image>
+      </ImageView>
+   </children>
 </AnchorPane>

@@ -12,7 +12,7 @@ public class PartidaView extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(PartidaView.class.getResource("partida-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("LANBingo Partida");
-        stage.getIcons().add(new Image(HomeView.class.getResourceAsStream("/raw/logo.png")));
+        stage.getIcons().add(new Image(PartidaView.class.getResourceAsStream("/raw/logo.png")));
         stage.setScene(scene);
         stage.show();
     }

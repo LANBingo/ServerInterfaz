@@ -1,8 +1,11 @@
 package com.lanbingo.servidorbingo;
 
+import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.*;
@@ -17,6 +20,8 @@ public class Server extends Thread{
             try {
                 //El socket es aceptado por el servidor y informa de la conexion con un jugador
                 jugador = InfCompartido.listener.accept();
+                InfCompartido.countJuadores++;
+
                 System.out.println("Jugador aceptado");
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -37,6 +42,7 @@ public class Server extends Thread{
     public void run() {
         try {
             //IP y puerto que deben ingresar los jugadores en la app movil
+
             System.out.println("IP conexion: " + InetAddress.getLocalHost().getHostAddress());
             System.out.println("Puerto conexion: " + InfCompartido.PUERTO);
             while (true) {
@@ -58,11 +64,13 @@ public class Server extends Thread{
                         jugador.getInetAddress().getAddress();
                         InfCompartido.LISTA_DE_ENVIO.add(jugador);//El socket del jugador se añade a la lista
                         String nombre = sc.nextLine();
-                        InfCompartido.jugadores.put(jugador,nombre);
+                        InfCompartido.jugadores.put(jugador,nombre);//Añade el jugador con su nombre a la lista y a la lista de puntos
+                        InfCompartido.pointsJugadores.put(jugador,0);
                         System.out.println("Conectado: " + nombre); //Nombre del jugador conectado
                         ServerHilo serverHilo = new ServerHilo(jugador,sc);//Pasa el jugador y su socket a
                         // la conexion de la partida
                         serverHilo.start();
+                        new HomeController().setContadorJugadores();
                         InfCompartido.countJuadores++;//La cuenta de jugadores aumenta en 1
                         break;
                     }
@@ -142,10 +150,13 @@ class ServerHilo extends Thread {
                         Server.envioGlobal(true);
                         System.out.println(true);
                         InfCompartido.RondaNombreWinner=InfCompartido.jugadores.get(socket);
-                        System.out.println(InfCompartido.RondaNombreWinner); //Para probar si puedo imprimir el
-                        // nombre del ganador, nom ge acuerdo de si era justo asi como sacaba el value de una variable
-                        //Ahora lo cambiaré por una ventana nueve emergente
-                        //pw.println("false")
+                        GanadorView ganadorView = new GanadorView();
+                        ganadorView.start(new Stage());
+                        if (InfCompartido.pointsJugadores.get(socket) >= InfCompartido.maxPoints){
+                            break;
+                        }
+                        System.out.println(InfCompartido.RondaNombreWinner);
+
                     }//Salida de la partida
                     if (msg.equals("Exit")){
                         scan.close();
@@ -159,5 +170,8 @@ class ServerHilo extends Thread {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    public void SingWinner(){
+
     }
 }

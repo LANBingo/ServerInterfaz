@@ -39,12 +39,14 @@ public class HomeController implements Initializable {
         InfCompartido.comienzaPartida = true;
         PartidaView partidaView = new PartidaView();
         partidaView.start(new Stage());
+
+
     }
 
     //Aumentar el numero de jugadores unidos -- Sin implementar
     @FXML
     protected void setContadorJugadores() throws IOException {
-            this.txNumPlayer.setText(InfCompartido.countJuadores + "");
+            this.txNumPlayer.setText("w");
     }
 
     @Override
@@ -65,9 +67,5 @@ public class HomeController implements Initializable {
     protected void setCbxMaxPoints(ActionEvent actionEvent) throws Exception {
         InfCompartido.maxPoints = Integer.parseInt(cbxMaxPoints.getSelectionModel().getSelectedItem());
     }
-    @FXML
-    protected void primerEstilo(ActionEvent event){
-        btComenzar.getStylesheets().clear();
-        btComenzar.getStylesheets().add("/estilos/estilo1.css");
-    }
+
 }

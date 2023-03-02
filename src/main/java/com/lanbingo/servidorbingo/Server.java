@@ -1,11 +1,10 @@
 package com.lanbingo.servidorbingo;
 
-import javafx.stage.Stage;
 
+import javafx.stage.Stage;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.InetAddress;
-import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.*;
@@ -68,9 +67,8 @@ public class Server extends Thread{
                         InfCompartido.pointsJugadores.put(jugador,0);
                         System.out.println("Conectado: " + nombre); //Nombre del jugador conectado
                         ServerHilo serverHilo = new ServerHilo(jugador,sc);//Pasa el jugador y su socket a
-                        // la conexion de la partida
-                        serverHilo.start();
-                        new HomeController().setContadorJugadores();
+                        serverHilo.start();// Comienza la conexion de la partida
+                        //new HomeController().setContadorJugadores();Sin implementar
                         InfCompartido.countJuadores++;//La cuenta de jugadores aumenta en 1
                         break;
                     }
@@ -149,14 +147,20 @@ class ServerHilo extends Thread {
                     } else {
                         Server.envioGlobal(true);
                         System.out.println(true);
-                        InfCompartido.RondaNombreWinner=InfCompartido.jugadores.get(socket);
-                        int i = InfCompartido.pointsJugadores.get(socket);
-                        i = i + 1;
-                        InfCompartido.pointsJugadores.replace(socket,i);
-                        GanadorView ganadorView = new GanadorView();
-                        ganadorView.start(new Stage());
+                        InfCompartido.RondaNombreWinner=InfCompartido.jugadores.get(socket);//Establece el nombre del ganador
+                        // en la ventana ganador
+                        //Suma los puntos adquiridos. Si es el maximo acaba la partida
+                        InfCompartido.pointsJugadores.replace(socket,InfCompartido.pointsJugadores.get(socket)+1);
                         if (InfCompartido.pointsJugadores.get(socket) >= InfCompartido.maxPoints){
+                            GanadorView ganadorView = new GanadorView();
+                            ganadorView.start(new Stage());
+                            InfCompartido.numBingo.clear();
                             break;
+                        }
+                        else {
+                            GanadorView ganadorView = new GanadorView();
+                            ganadorView.start(new Stage());
+                            InfCompartido.numBingo.clear();
                         }
                         System.out.println(InfCompartido.RondaNombreWinner);
 

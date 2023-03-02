@@ -37,16 +37,17 @@ public class HomeController implements Initializable {
         //Controlador del boton-Cuando clickas el boton "Comenzar partida" lanza
         // la siguiente ventana que contiene la partida
         InfCompartido.comienzaPartida = true;
+        InfCompartido.maxPoints=Integer.parseInt(cbxMaxPoints.getSelectionModel().getSelectedItem());
         PartidaView partidaView = new PartidaView();
         partidaView.start(new Stage());
 
 
     }
 
-    //Aumentar el numero de jugadores unidos -- Sin implementar
+
     @FXML
-    protected void setContadorJugadores() throws IOException {
-            this.txNumPlayer.setText("w");
+    protected void setContadorJugadores() {//Mostrar el numero de jugadores unidos -- Sin implementar - Fallo en Javafx
+        //this.txNumPlayer.setText(InfCompartido.countJuadores +"");
     }
 
     @Override
@@ -55,6 +56,7 @@ public class HomeController implements Initializable {
         ObservableList<String> items = FXCollections.observableArrayList();
         items.addAll("3", "6", "9", "12", "15");
         cbxMaxPoints.setItems(items);
+        cbxMaxPoints.getSelectionModel().selectFirst();//Selecciona el predeterminado de puntos
         txNumPlayer.setText("0");
         try {
             laIP.setText(InetAddress.getLocalHost().getHostAddress() +"");

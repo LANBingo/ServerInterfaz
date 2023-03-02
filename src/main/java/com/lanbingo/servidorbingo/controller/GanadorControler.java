@@ -1,5 +1,6 @@
-package com.lanbingo.servidorbingo;
+package com.lanbingo.servidorbingo.controller;
 
+import com.lanbingo.servidorbingo.VariablesCompartidas;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -12,6 +13,6 @@ public class GanadorControler implements Initializable {
     protected Label laGanador;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        laGanador.setText(VariablesCompartidas.RondaNombreWinner);
+        laGanador.setText(VariablesCompartidas.rondaNombreWinner);
     }
 }

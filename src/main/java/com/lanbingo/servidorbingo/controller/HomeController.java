@@ -1,5 +1,7 @@
-package com.lanbingo.servidorbingo;
+package com.lanbingo.servidorbingo.controller;
 
+import com.lanbingo.servidorbingo.PartidaView;
+import com.lanbingo.servidorbingo.VariablesCompartidas;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

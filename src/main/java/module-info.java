@@ -8,4 +8,6 @@ module com.lanbingo.servidorbingo {
 
     opens com.lanbingo.servidorbingo to javafx.fxml;
     exports com.lanbingo.servidorbingo;
+    exports com.lanbingo.servidorbingo.controller;
+    opens com.lanbingo.servidorbingo.controller to javafx.fxml;
 }

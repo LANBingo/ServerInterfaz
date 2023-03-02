@@ -2,6 +2,7 @@ package com.lanbingo.servidorbingo;
 
 
 import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.InetAddress;
@@ -138,23 +139,27 @@ class PartidaHilo extends Thread {
                         }
                     }
                     if (error) {
-                        pw.println(false);
+                        Server.envioGlobal(false);
                         System.out.println(false);
                     } else {
                         //Suma los puntos adquiridos. Si es el maximo acaba la partida
                         VariablesCompartidas.pointsJugadores.replace(socket, VariablesCompartidas.pointsJugadores.get(socket)+1);
                         if (VariablesCompartidas.pointsJugadores.get(socket) >= VariablesCompartidas.maxPoints){
-                            singWinner();//Lanza ventana ganador
+                            VariablesCompartidas.rondaNombreWinner = VariablesCompartidas.jugadores.get(socket);
+                            //singWinner();//Lanza ventana ganador - Colapsa hilo, javafx no lo permite
+                            System.out.println(VariablesCompartidas.rondaNombreWinner);
                             Server.envioGlobal(true);
                             System.out.println(true);
+                            VariablesCompartidas.numBingo.clear();
                             break;
                         }
                         else {
-                            singWinner();
-                            pw.println(true);
+                            VariablesCompartidas.rondaNombreWinner = VariablesCompartidas.jugadores.get(socket);
+                            //singWinner();
+                            Server.envioGlobal(true);
                             System.out.println(true);
+                            System.out.println(VariablesCompartidas.rondaNombreWinner);
                         }
-                        System.out.println(VariablesCompartidas.RondaNombreWinner);
                     }//Salida de la partida
                     if (msg.equals("Exit")){
                         scan.close();
@@ -169,9 +174,7 @@ class PartidaHilo extends Thread {
         }
     }
     public void singWinner() throws IOException {
-        VariablesCompartidas.RondaNombreWinner= VariablesCompartidas.jugadores.get(socket);
         GanadorView ganadorView = new GanadorView();
         ganadorView.start(new Stage());
-        VariablesCompartidas.numBingo.clear();
     }
 }

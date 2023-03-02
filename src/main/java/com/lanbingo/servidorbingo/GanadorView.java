@@ -13,7 +13,7 @@ public class GanadorView extends Application {
     public void start(Stage primaryStage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(GanadorView.class.getResource("ganador-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        primaryStage.setTitle("LANBingo Server");
+        primaryStage.setTitle("LANBingo Ganador");
         primaryStage.getIcons().add(new Image(GanadorView.class.getResourceAsStream("/raw/logo.png")));
         primaryStage.setScene(scene);
         primaryStage.show();

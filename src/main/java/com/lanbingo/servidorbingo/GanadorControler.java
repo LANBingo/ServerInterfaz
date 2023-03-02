@@ -12,10 +12,6 @@ public class GanadorControler implements Initializable {
     protected Label laGanador;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        laGanador.setText(InfCompartido.RondaNombreWinner);
+        laGanador.setText(VariablesCompartidas.RondaNombreWinner);
     }
-
-
-
-
 }

@@ -25,19 +25,13 @@ public class HomeView extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
-    //Cerrar servidor cuando se cierre la pestaña - Sin implementar
-    @Override
-    public void stop() throws Exception {
-
-    }
-
     public static void main(String[] args) throws IOException {
-        /*
-        Lanzamiento/Inializacion del servidor o backEnd y la pesataña home
-         */
         Server s = new Server();
         s.start();
         launch();
     }
+    @Override
+    public void stop() throws Exception {}//Cerrar servidor cuando se cierre la pestaña - Sin implementar
+
+
 }

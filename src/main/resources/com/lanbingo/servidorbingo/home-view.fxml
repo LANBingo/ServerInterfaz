@@ -15,10 +15,11 @@
       <AnchorPane prefHeight="487.0" prefWidth="513.0">
          <children>
             <Button fx:id="btComenzar" layoutX="121.0" layoutY="409.0" onAction="#btComenzarPartida_Click" prefHeight="43.0" prefWidth="278.0"
-                    stylesheets="@../../../estilos/estilo1.css" text="¡Comienza el bingo!" />
+                    stylesheets="@../../../estilos/estilosPrincipal.css" text="¡Comienza el bingo!" />
             <TextField fx:id="txNumPlayer" editable="false" layoutX="322.0" layoutY="374.0" prefHeight="25.0" prefWidth="34.0" />
             <Text layoutX="187.0" layoutY="391.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jugadores Conectados" />
-            <Text layoutX="157.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LANBingo" textAlignment="CENTER" wrappingWidth="182.03904724121094">
+            <Text layoutX="157.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                  text="LANBingo" textAlignment="CENTER" wrappingWidth="182.03904724121094">
                <font>
                   <Font name="Comic Sans MS" size="36.0" />
                </font></Text>
@@ -28,7 +29,8 @@
                </image>
             </ImageView>
             <Label layoutX="198.0" layoutY="329.0" text="Maximo de puntos" />
-            <ComboBox fx:id="cbxMaxPoints" layoutX="339.0" layoutY="325.0" onAction="#setCbxMaxPoints" prefHeight="25.0" prefWidth="69.0" promptText="6" />
+            <ComboBox fx:id="cbxMaxPoints" layoutX="339.0" layoutY="325.0" onAction="#setCbxMaxPoints"
+                      prefHeight="25.0" prefWidth="69.0" promptText="6" />
             <Label layoutX="208.0" layoutY="280.0" text="IP de la partida:" />
             <Label layoutX="195.0" layoutY="253.0" text="Puerto de la partida:" />
             <Label fx:id="laPuerto" layoutX="325.0" layoutY="253.0" text="Puert" />

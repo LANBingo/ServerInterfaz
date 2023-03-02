@@ -10,9 +10,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aa99b5d5-123f-4987-9716-eb38d8f9e789" name="Changes" comment="Estilos2">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/GanadorControler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/GanadorControler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/GanadorView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/GanadorView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/InfCompartido.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/InfCompartido.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/HomeView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/HomeView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/InfCompartido.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/VariablesCompartidas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/PartidaControler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/PartidaControler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/lanbingo/servidorbingo/ganador-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/lanbingo/servidorbingo/ganador-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/lanbingo/servidorbingo/home-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/lanbingo/servidorbingo/home-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/lanbingo/servidorbingo/partida-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/lanbingo/servidorbingo/partida-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/estilos/estilo1.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/estilos/estilosPrincipal.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/estilos/estilo2.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/estilos/estiloWinner.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

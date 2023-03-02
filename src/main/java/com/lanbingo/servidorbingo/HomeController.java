@@ -11,8 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.URL;
 import java.net.UnknownHostException;
@@ -30,26 +28,6 @@ public class HomeController implements Initializable {
     private Label laIP;
     @FXML
     private Label laPuerto;
-
-
-    @FXML
-    protected void btComenzarPartida_Click() throws Exception {
-        //Controlador del boton-Cuando clickas el boton "Comenzar partida" lanza
-        // la siguiente ventana que contiene la partida
-        InfCompartido.comienzaPartida = true;
-        InfCompartido.maxPoints=Integer.parseInt(cbxMaxPoints.getSelectionModel().getSelectedItem());
-        PartidaView partidaView = new PartidaView();
-        partidaView.start(new Stage());
-
-
-    }
-
-
-    @FXML
-    protected void setContadorJugadores() {//Mostrar el numero de jugadores unidos -- Sin implementar - Fallo en Javafx
-        //this.txNumPlayer.setText(InfCompartido.countJuadores +"");
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //Metodo que inicializa el comboBox de puntos y el numero de jugadores --- Sin implementar funcional
@@ -63,11 +41,25 @@ public class HomeController implements Initializable {
         } catch (UnknownHostException e) {
             throw new RuntimeException(e);
         }
-        laPuerto.setText(InfCompartido.PUERTO + "");
+        laPuerto.setText(VariablesCompartidas.PUERTO + "");
     }
     @FXML
+    protected void btComenzarPartida_Click() throws Exception {
+        //Controlador del boton-Cuando clickas el boton "Comenzar partida" lanza
+        // la siguiente ventana que contiene la partida
+        VariablesCompartidas.comienzaPartida = true;
+        VariablesCompartidas.maxPoints=Integer.parseInt(cbxMaxPoints.getSelectionModel().getSelectedItem());
+        PartidaView partidaView = new PartidaView();
+        partidaView.start(new Stage());
+    }
+    @FXML
+    protected void setContadorJugadores() {//Mostrar el numero de jugadores unidos -- Sin implementar - Fallo en Javafx
+        //this.txNumPlayer.setText(VariablesCompartidas.countJuadores +"");
+    }
+
+    @FXML
     protected void setCbxMaxPoints(ActionEvent actionEvent) throws Exception {
-        InfCompartido.maxPoints = Integer.parseInt(cbxMaxPoints.getSelectionModel().getSelectedItem());
+        VariablesCompartidas.maxPoints = Integer.parseInt(cbxMaxPoints.getSelectionModel().getSelectedItem());
     }
 
 }

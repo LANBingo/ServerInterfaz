@@ -151,7 +151,7 @@ class PartidaHilo extends Thread {
                         }
                         else {
                             singWinner();
-                            Server.envioGlobal(true);
+                            pw.println(true);
                             System.out.println(true);
                         }
                         System.out.println(VariablesCompartidas.RondaNombreWinner);

@@ -150,6 +150,9 @@ class ServerHilo extends Thread {
                         Server.envioGlobal(true);
                         System.out.println(true);
                         InfCompartido.RondaNombreWinner=InfCompartido.jugadores.get(socket);
+                        int i = InfCompartido.pointsJugadores.get(socket);
+                        i = i + 1;
+                        InfCompartido.pointsJugadores.replace(socket,i);
                         GanadorView ganadorView = new GanadorView();
                         ganadorView.start(new Stage());
                         if (InfCompartido.pointsJugadores.get(socket) >= InfCompartido.maxPoints){

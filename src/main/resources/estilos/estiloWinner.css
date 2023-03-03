@@ -1,4 +1,6 @@
-Label{
-        --fx-font: bold italic 40pt Arial;
-             -fx-text-fill: blue;
+TextField{
+        -fx-font: bold italic 40pt Arial;
+        -fx-text-fill: blue;
+        -fx-background-radius: 10 10 10 10;
+        -fx-border-radius: 10 10 10 10;
 }

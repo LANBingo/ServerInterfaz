@@ -20,7 +20,7 @@ public class PartidaControler implements Initializable {
     @FXML
     private TextField tfNum;
 
-    private boolean habilitar = false;
+    public static boolean habilitar = false;
 
     @FXML
     private Button btGenera;

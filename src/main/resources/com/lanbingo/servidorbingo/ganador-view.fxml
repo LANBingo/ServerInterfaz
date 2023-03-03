@@ -3,20 +3,16 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="419.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lanbingo.servidorbingo.controller.GanadorControler">
    <children>
       <Label id="titulo" fx:id="laTituloWin" layoutX="233.0" layoutY="52.0" stylesheets="@../../../estilos/estilosPrincipal.css" text="LanBingo" />
       <Label layoutX="54.0" layoutY="157.0" text="El ganador de la ronda es" />
-      <Label fx:id="laGanador" layoutX="79.0" layoutY="231.0" stylesheets="@../../../estilos/estiloWinner.css" text="Label">
-         <font>
-            <Font size="36.0" />
-         </font></Label>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="300.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../raw/sopla.png" />
          </image>
       </ImageView>
+      <TextField fx:id="tbGanador" disable="true" layoutX="66.0" layoutY="249.0" prefHeight="53.0" prefWidth="135.0" stylesheets="@../../../estilos/estiloWinner.css" />
    </children>
 </AnchorPane>

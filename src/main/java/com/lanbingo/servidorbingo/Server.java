@@ -1,6 +1,7 @@
 package com.lanbingo.servidorbingo;
 
 
+import com.lanbingo.servidorbingo.controller.PartidaControler;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 
@@ -114,9 +115,8 @@ class PartidaHilo extends Thread {
             boolean error = false;//Boolenao que devuelve el resultado de la comparacion de las lineas
             scan = new Scanner(socket.getInputStream());
             while (socket.isConnected()) {
-                VariablesCompartidas.rondaNombreWinner = VariablesCompartidas.jugadores.get(socket);
-                singWinner();
                 while (scan.hasNextLine()) {
+                    PartidaControler.habilitar = false;
                     Server.envioGlobal(true);
                     String msg = scan.nextLine();
                     if(msg.isEmpty()){//No se ha ne viado nada

@@ -1,6 +1,7 @@
 package com.lanbingo.servidorbingo;
 
 
+import javafx.fxml.FXML;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -19,8 +20,6 @@ public class Server extends Thread{
             try {
                 //El socket es aceptado por el servidor y informa de la conexion con un jugador
                 jugador = VariablesCompartidas.listener.accept();
-                VariablesCompartidas.countJuadores++;
-
                 System.out.println("Jugador aceptado");
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -115,7 +114,8 @@ class PartidaHilo extends Thread {
             boolean error = false;//Boolenao que devuelve el resultado de la comparacion de las lineas
             scan = new Scanner(socket.getInputStream());
             while (socket.isConnected()) {
-
+                VariablesCompartidas.rondaNombreWinner = VariablesCompartidas.jugadores.get(socket);
+                singWinner();
                 while (scan.hasNextLine()) {
                     Server.envioGlobal(true);
                     String msg = scan.nextLine();
@@ -146,16 +146,17 @@ class PartidaHilo extends Thread {
                         VariablesCompartidas.pointsJugadores.replace(socket, VariablesCompartidas.pointsJugadores.get(socket)+1);
                         if (VariablesCompartidas.pointsJugadores.get(socket) >= VariablesCompartidas.maxPoints){
                             VariablesCompartidas.rondaNombreWinner = VariablesCompartidas.jugadores.get(socket);
-                            //singWinner();//Lanza ventana ganador - Colapsa hilo, javafx no lo permite
+                            singWinner();//Lanza ventana ganador - Colapsa hilo, javafx no lo permite
                             System.out.println(VariablesCompartidas.rondaNombreWinner);
                             Server.envioGlobal(true);
                             System.out.println(true);
                             VariablesCompartidas.numBingo.clear();
+
                             break;
                         }
                         else {
                             VariablesCompartidas.rondaNombreWinner = VariablesCompartidas.jugadores.get(socket);
-                            //singWinner();
+                            singWinner();
                             Server.envioGlobal(true);
                             System.out.println(true);
                             System.out.println(VariablesCompartidas.rondaNombreWinner);

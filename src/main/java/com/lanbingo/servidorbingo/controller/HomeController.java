@@ -19,6 +19,8 @@ import java.net.UnknownHostException;
 import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
+
+    //Variables de la ventana javafx
     @FXML
     public TextField txNumPlayer;
     @FXML
@@ -55,8 +57,8 @@ public class HomeController implements Initializable {
         partidaView.start(new Stage());
     }
     @FXML
-    protected void setContadorJugadores() {//Mostrar el numero de jugadores unidos -- Sin implementar - Fallo en Javafx
-        //this.txNumPlayer.setText(VariablesCompartidas.countJuadores +"");
+    protected void setContadorJugadores(ActionEvent actionEvent) {//Mostrar el numero de jugadores unidos -- Sin implementar - Fallo en Javafx
+        this.txNumPlayer.setText(VariablesCompartidas.countJuadores +"");
     }
 
     @FXML

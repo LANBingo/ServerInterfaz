@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -26,16 +27,21 @@
             <Font name="System Bold" size="26.0" />
          </font>
       </Label>
-      <Button fx:id="btGenera" mnemonicParsing="false" onAction="#btGenerationClick" stylesheets="@../../../estilos/estilosPrincipal.css" text="Genera Numero" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-      <Label fx:id="laNum" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../../../estilos/estilosPrincipal.css" text="00" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
-         <font>
-            <Font name="Comic Sans MS" size="80.0" />
-         </font>
-      </Label>
+      <Button fx:id="btGenera" mnemonicParsing="false" onAction="#btHabilitar" stylesheets="@../../../estilos/estilosPrincipal.css" text="Genera Numero" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
       <TextArea fx:id="taNumbers" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
       <ImageView fx:id="ivPanel" fitHeight="170.0" fitWidth="355.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <image>
             <Image url="@../../../raw/img.png" />
          </image></ImageView>
+      <TextField fx:id="tfNum" editable="false" prefHeight="18.0" prefWidth="101.0" promptText="00" stylesheets="@../../../estilos/estilosPrincipal.css" GridPane.columnIndex="3" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="50.0" right="90.0" />
+         </GridPane.margin>
+         <font>
+            <Font name="Arial Black" size="24.0" />
+         </font>
+         <opaqueInsets>
+            <Insets left="50.0" />
+         </opaqueInsets></TextField>
    </children>
 </GridPane>

@@ -9,9 +9,17 @@ Button { -fx-background-color: #008287;
          -fx-background-radius: 10 10 10 10;
          -fx-border-radius: 10 10 10 10;
 }
-TextField{
-        -fx-text-fill:#ff1414
-
+#num{
+         -fx-text-fill:#ff1414;
+         -fx-border-width: 2;
+         -fx-background-radius: 10 10 10 10;
+         -fx-border-radius: 10 10 10 10;
+}
+TextArea{
+        -fx-font-style: italic;
+        -fx-font-size: 12px;
+        -fx-background-radius: 10 10 10 10;
+        -fx-border-radius: 10 10 10 10;
 }
 #titulo{
     -fx-font: bold italic 40pt Arial;

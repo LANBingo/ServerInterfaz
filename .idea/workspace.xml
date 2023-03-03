@@ -9,12 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aa99b5d5-123f-4987-9716-eb38d8f9e789" name="Changes" comment="hilo">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/controller/HomeController.java" afterDir="false" />
+    <list default="true" id="aa99b5d5-123f-4987-9716-eb38d8f9e789" name="Changes" comment="Generar num">
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/controller/PartidaControler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/controller/PartidaControler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/lanbingo/servidorbingo/home-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/lanbingo/servidorbingo/home-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/lanbingo/servidorbingo/partida-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/lanbingo/servidorbingo/partida-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/estilos/estilosPrincipal.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/estilos/estilosPrincipal.css" afterDir="false" />
     </list>
@@ -186,7 +182,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677801269970</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Generar num">
+      <created>1677808275668</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1677808275668</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -211,6 +214,7 @@
     <MESSAGE value="Final2" />
     <MESSAGE value="Presentacion" />
     <MESSAGE value="hilo" />
-    <option name="LAST_COMMIT_MESSAGE" value="hilo" />
+    <MESSAGE value="Generar num" />
+    <option name="LAST_COMMIT_MESSAGE" value="Generar num" />
   </component>
 </project>

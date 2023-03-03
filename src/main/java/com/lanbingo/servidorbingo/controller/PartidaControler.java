@@ -48,6 +48,7 @@ public class PartidaControler implements Initializable {
             if (saltolinea.compareAndSet(10,0)){
                 stringBuilder.append("\n");
             }
+            stringBuilder.append(" ");
         });
         this.taNumbers.setText(stringBuilder.toString());
    }

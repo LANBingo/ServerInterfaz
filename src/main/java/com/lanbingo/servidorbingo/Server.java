@@ -2,7 +2,6 @@ package com.lanbingo.servidorbingo;
 
 
 import com.lanbingo.servidorbingo.controller.PartidaControler;
-import javafx.fxml.FXML;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -15,6 +14,8 @@ import java.util.*;
 public class Server extends Thread{
     private Socket jugador = null; // Socket del jugador que llama al servidor
      // Lista de socket que usaremos mas tarde
+     private Scanner sc;
+     private PrintWriter pw;
     class HacerJugadores extends Thread{ //Clase para la Generacion de sockets de los jugadores
         @Override
         public void run() {
@@ -32,6 +33,13 @@ public class Server extends Thread{
         // y de la lista que guardará los sockets de los jugadores
         VariablesCompartidas.listener = new ServerSocket(VariablesCompartidas.PUERTO);
         VariablesCompartidas.LISTA_DE_ENVIO = new ArrayList<>();
+
+        Jugadores.crearPerfiles("Pedro","Ped2511");
+        Jugadores.crearPerfiles("Juan","Ja1901");
+        Jugadores.crearPerfiles("Paco","Pc0610");
+        Jugadores.crearPerfiles("Jaime","Profesos");
+        Jugadores.crearPerfiles("Andres","Presidente2k");
+        Jugadores.crearPerfiles("Patri","2kTuto");
     }
 
     @Override //Metodo principal que acepta y se mandan al hilo para que tengan la comunicacion
@@ -39,7 +47,7 @@ public class Server extends Thread{
     public void run() {
         try {
             //IP y puerto que deben ingresar los jugadores en la app movil
-
+            int expulsion = 0;
             System.out.println("IP conexion: " + InetAddress.getLocalHost().getHostAddress());
             System.out.println("Puerto conexion: " + VariablesCompartidas.PUERTO);
             while (true) {
@@ -50,25 +58,40 @@ public class Server extends Thread{
                 // o la partida arranca
                 if (jugador == null){
                     System.out.println("Comienza Partida");
-                    envioGlobal(true);
+                    envioGlobal("true");
                     hacerJugadores.interrupt();//Corta el hilo de aceptar jugadores
                     System.out.println("Ya no se aceptan mas jugadores");
                     break;
                 }
-                while (jugador.isConnected()){//Cuando se conecta el jugador en la la entrada de datos
-                    Scanner sc = new Scanner(jugador.getInputStream());
+                while (jugador.isConnected()){//Cuando se conecta el jugador en la entrada de datos
+                    sc = new Scanner(jugador.getInputStream());
+                    pw = new PrintWriter(jugador.getOutputStream());
                     if (sc.hasNextLine()){
-                        jugador.getInetAddress().getAddress();
-                        VariablesCompartidas.LISTA_DE_ENVIO.add(jugador);//El socket del jugador se añade a la lista
-                        String nombre = sc.nextLine();
-                        VariablesCompartidas.jugadores.put(jugador,nombre);//Añade el jugador con su nombre a la lista y a la lista de puntos
-                        VariablesCompartidas.pointsJugadores.put(jugador,0);
-                        System.out.println("Conectado: " + nombre); //Nombre del jugador conectado
-                        PartidaHilo partidaHilo = new PartidaHilo(jugador,sc);//Pasa el jugador y su socket a
-                        partidaHilo.start();// Comienza la conexion de la partida
-                        //new HomeController().setContadorJugadores();Sin implementar
-                        VariablesCompartidas.countJuadores++;//La cuenta de jugadores aumenta en 1
-                        break;
+                        String nombre = Cifrado.descifrador(sc.nextLine());
+                        String pasword = Cifrado.descifrador(sc.nextLine());
+                        if (Jugadores.perfiles.containsKey(nombre)) {
+                            String passWServer = Jugadores.perfiles.get(nombre);
+                            if (pasword.equals(passWServer)) {
+                                VariablesCompartidas.LISTA_DE_ENVIO.add(jugador);//El socket del jugador se añade a la lista
+                                VariablesCompartidas.jugadoresEnPartida.put(jugador, nombre);//Añade el jugador con su nombre a la lista y a la lista de puntos
+                                VariablesCompartidas.pointsJugadores.put(jugador, 0);
+                                System.out.println("Conectado: " + nombre); //Nombre del jugador conectado
+                                PartidaHilo partidaHilo = new PartidaHilo(jugador, sc);//Pasa el jugador y su socket a
+                                partidaHilo.start();// Comienza la conexion de la partida
+                                //new HomeController().setContadorJugadores();Sin implementar
+                                VariablesCompartidas.countJuadores++;//La cuenta de jugadores aumenta en 1
+                                break;
+                            } else {
+                                    if (expulsion >= 3){
+                                        jugador.close();
+                                    }else {
+                                        expulsion++;
+                                        pw.println(false);
+                                    }
+                            }
+                        } else {
+                            pw.println(false);
+                        }
                     }
                 }
                 jugador = null;
@@ -78,7 +101,7 @@ public class Server extends Thread{
             e.printStackTrace();
         }
     }
-    public static void envioGlobal(Boolean envio){//Metodo que comienza el bingo mandando a todos
+    public static void envioGlobal(String envio){//Metodo que comienza el bingo mandando a todos
         // los sockets el indicador de comienzo de la partida (true)
        VariablesCompartidas.LISTA_DE_ENVIO.stream().forEach(socket -> {
            PrintWriter printWriter = null;
@@ -88,7 +111,7 @@ public class Server extends Thread{
                e.printStackTrace();
                return;
            }
-           printWriter.println(envio.booleanValue());
+           printWriter.println(Cifrado.cifrador(envio));
        });
     }
 
@@ -117,8 +140,8 @@ class PartidaHilo extends Thread {
             while (socket.isConnected()) {
                 while (scan.hasNextLine()) {
                     PartidaControler.habilitar = false;
-                    Server.envioGlobal(true);
-                    String msg = scan.nextLine();
+                    Server.envioGlobal("true");
+                    String msg = Cifrado.descifrador(scan.nextLine());
                     if(msg.isEmpty()){//No se ha ne viado nada
                         System.out.println("Fallo en el envio de datos");
                         break;
@@ -139,25 +162,25 @@ class PartidaHilo extends Thread {
                         }
                     }
                     if (error) {
-                        Server.envioGlobal(false);
+                        Server.envioGlobal("false");
                         System.out.println(false);
                     } else {
                         //Suma los puntos adquiridos. Si es el maximo acaba la partida
                         VariablesCompartidas.pointsJugadores.replace(socket, VariablesCompartidas.pointsJugadores.get(socket)+1);
                         if (VariablesCompartidas.pointsJugadores.get(socket) >= VariablesCompartidas.maxPoints){
-                            VariablesCompartidas.rondaNombreWinner = VariablesCompartidas.jugadores.get(socket);
+                            VariablesCompartidas.rondaNombreWinner = VariablesCompartidas.jugadoresEnPartida.get(socket);
                             singWinner();//Lanza ventana ganador - Colapsa hilo, javafx no lo permite
                             System.out.println(VariablesCompartidas.rondaNombreWinner);
-                            Server.envioGlobal(true);
+                            Server.envioGlobal("true");
                             System.out.println(true);
                             VariablesCompartidas.numBingo.clear();
 
                             break;
                         }
                         else {
-                            VariablesCompartidas.rondaNombreWinner = VariablesCompartidas.jugadores.get(socket);
+                            VariablesCompartidas.rondaNombreWinner = VariablesCompartidas.jugadoresEnPartida.get(socket);
                             singWinner();
-                            Server.envioGlobal(true);
+                            Server.envioGlobal("true");
                             System.out.println(true);
                             System.out.println(VariablesCompartidas.rondaNombreWinner);
                         }
@@ -167,7 +190,7 @@ class PartidaHilo extends Thread {
                     }
                 }
                 Thread.sleep(3000);
-                pw.println("Close");//Cierre del jugador y servidor
+                pw.println(Cifrado.cifrador("Close"));//Cierre del jugador y servidor
             }
             socket.close();
         } catch (Exception e) {

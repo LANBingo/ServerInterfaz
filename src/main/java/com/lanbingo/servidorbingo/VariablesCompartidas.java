@@ -12,7 +12,8 @@ public abstract class VariablesCompartidas {
     public static int countJuadores = 0; // cuenta de los jugadores unidos a la partida
     public static int maxPoints = 3; //puntos maximos para acabar la partida inicializado a 3
     public static ServerSocket listener = null;//Servidor del socket creado en la clase compartida
-    public static Map<Socket,String> jugadores = new HashMap<>();//Map que contiene los jugadores unidos a la partida
+
+    public static Map<Socket,String> jugadoresEnPartida = new HashMap<>();//Map que contiene los jugadores unidos a la partida
    public static Map<Socket,Integer> pointsJugadores = new HashMap<>();
    public static boolean comienzaPartida = false;//booleno que inicia la partida
    public static final int PUERTO = 5000;//Puerto de entrada y salida

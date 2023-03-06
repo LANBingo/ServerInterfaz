@@ -29,6 +29,12 @@ public class Cifrado {
         boolean dir;
         dir = cifrado.charAt(0) == '+';
         cifrado = cifrado.substring(1);
+        String validador1 = cifrado.substring(0,(cifrado.length()/3));
+        String validador2 = cifrado.substring(cifrado.length() / 3, (cifrado.length() / 3) * 2);
+        String validador3 = cifrado.substring((cifrado.length()/3) *2);
+        if (!validador1.equals(validador2) || !validador2.equals(validador3) || !validador3.equals(validador1)){
+            return "Error";
+        }
         cifrado = cifrado.substring(cifrado.length()/3, ((cifrado.length()/3)*2));
         int cesar = Integer.parseInt(cifrado.substring(cifrado.length()-1));
         cifrado = cifrado.substring(0, cifrado.length()-1);

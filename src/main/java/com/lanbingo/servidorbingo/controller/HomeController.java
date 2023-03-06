@@ -26,6 +26,8 @@ public class HomeController implements Initializable {
     @FXML
     private ComboBox<String> cbxMaxPoints;
 
+    //@FXML
+    //private Label laNombres;
     @FXML
     private Button btComenzar;
     @FXML
@@ -40,12 +42,15 @@ public class HomeController implements Initializable {
         cbxMaxPoints.setItems(items);
         cbxMaxPoints.getSelectionModel().selectFirst();//Selecciona el predeterminado de puntos
         txNumPlayer.setText("0");
+        //laNombres.setText(escirbeNombres());
         try {
             laIP.setText(InetAddress.getLocalHost().getHostAddress() +"");
         } catch (UnknownHostException e) {
             throw new RuntimeException(e);
         }
         laPuerto.setText(VariablesCompartidas.PUERTO + "");
+
+
     }
     @FXML
     protected void btComenzarPartida_Click() throws Exception {
@@ -66,4 +71,15 @@ public class HomeController implements Initializable {
         VariablesCompartidas.maxPoints = Integer.parseInt(cbxMaxPoints.getSelectionModel().getSelectedItem());
     }
 
+    /*
+    private String escirbeNombres(){
+        String listNombre = "";
+        for (String nmae: Claves.perfiles.keySet()
+             ) {
+            listNombre = listNombre + nmae + "\n";
+        }
+        return listNombre;
+    }
+
+     */
 }

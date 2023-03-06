@@ -9,12 +9,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aa99b5d5-123f-4987-9716-eb38d8f9e789" name="Changes" comment="Viernes">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/Cifrado.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/Jugadores.java" afterDir="false" />
+    <list default="true" id="aa99b5d5-123f-4987-9716-eb38d8f9e789" name="Changes" comment="Presentar Lunes">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/Claves.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/Cifrado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/Cifrado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/Jugadores.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/VariablesCompartidas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/VariablesCompartidas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/controller/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/lanbingo/servidorbingo/home-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/lanbingo/servidorbingo/home-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,18 +54,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/peter/IdeaProjects/Bingo/CifradoNicolas",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/peter/IdeaProjects/Bingo/CifradoNicolas&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\peter\IdeaProjects\Bingo\ServerInterfaz" />
@@ -219,7 +222,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677852470559</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Presentar Lunes">
+      <created>1678051251683</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1678051251683</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -247,6 +257,7 @@
     <MESSAGE value="Generar num" />
     <MESSAGE value="Estilos partida" />
     <MESSAGE value="Viernes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Viernes" />
+    <MESSAGE value="Presentar Lunes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Presentar Lunes" />
   </component>
 </project>

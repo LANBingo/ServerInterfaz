@@ -9,15 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aa99b5d5-123f-4987-9716-eb38d8f9e789" name="Changes" comment="Presentar Lunes">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/Claves.java" afterDir="false" />
+    <list default="true" id="aa99b5d5-123f-4987-9716-eb38d8f9e789" name="Changes" comment=".">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/Cifrado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/Cifrado.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/Jugadores.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/VariablesCompartidas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/VariablesCompartidas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lanbingo/servidorbingo/controller/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/lanbingo/servidorbingo/home-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/lanbingo/servidorbingo/home-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -229,7 +223,21 @@
       <option name="project" value="LOCAL" />
       <updated>1678051251683</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Cambio a claves de acceso&#10;El codigo de la verison anterior de sistema de perfiles esta comentado">
+      <created>1678114690724</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1678114690724</updated>
+    </task>
+    <task id="LOCAL-00016" summary=".">
+      <created>1678116053621</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1678116053621</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -258,6 +266,8 @@
     <MESSAGE value="Estilos partida" />
     <MESSAGE value="Viernes" />
     <MESSAGE value="Presentar Lunes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Presentar Lunes" />
+    <MESSAGE value="Cambio a claves de acceso&#10;El codigo de la verison anterior de sistema de perfiles esta comentado" />
+    <MESSAGE value="." />
+    <option name="LAST_COMMIT_MESSAGE" value="." />
   </component>
 </project>

@@ -51,7 +51,6 @@ public class Server extends Thread{
     public void run() {
         try {
 
-            int expulsion = 0;
             System.out.println("\n-----SERVER LANBINGO----- \n");
             //IP y puerto que deben ingresar los jugadores en la app movil
             System.out.println("IP conexion: " + InetAddress.getLocalHost().getHostAddress());
@@ -74,9 +73,10 @@ public class Server extends Thread{
                     sc = new Scanner(jugador.getInputStream());
                     pw = new PrintWriter(jugador.getOutputStream());
                     if (sc.hasNextLine()) {
-                        String nombre = sc.nextLine();
                         String pasword = Cifrado.descifrador(sc.nextLine());
-                        if (Claves.claves.contains(pasword)) {
+                        if (Claves.claves.contains(pasword)){
+                            pw.println(true);
+                            String nombre = sc.nextLine();
                             VariablesCompartidas.LISTA_DE_ENVIO.add(jugador);//El socket del jugador se añade a la lista
                             VariablesCompartidas.jugadoresEnPartida.put(jugador, nombre);//Añade el jugador con su nombre a la lista y a la lista de puntos
                             VariablesCompartidas.pointsJugadores.put(jugador, 0);
@@ -86,16 +86,11 @@ public class Server extends Thread{
                             //new HomeController().setContadorJugadores();Sin implementar
                             VariablesCompartidas.countJuadores++;//La cuenta de jugadores aumenta en 1
                             break;
-                        }else {
-                            if (expulsion >= 3) {
-                                pw.println();
+                        } else {
+                                pw.println(false);
                                 sc.close();
                                 pw.close();
                                 jugador.close();
-                            } else {
-                                expulsion++;
-                                pw.println(false);
-                            }
                         }
                     }
                 }

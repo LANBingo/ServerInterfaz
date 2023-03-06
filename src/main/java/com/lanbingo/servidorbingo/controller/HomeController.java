@@ -26,8 +26,6 @@ public class HomeController implements Initializable {
     @FXML
     private ComboBox<String> cbxMaxPoints;
 
-    //@FXML
-    //private Label laNombres;
     @FXML
     private Button btComenzar;
     @FXML
@@ -42,7 +40,6 @@ public class HomeController implements Initializable {
         cbxMaxPoints.setItems(items);
         cbxMaxPoints.getSelectionModel().selectFirst();//Selecciona el predeterminado de puntos
         txNumPlayer.setText("0");
-        //laNombres.setText(escirbeNombres());
         try {
             laIP.setText(InetAddress.getLocalHost().getHostAddress() +"");
         } catch (UnknownHostException e) {

@@ -57,7 +57,7 @@ public class Server extends Thread{
                 //Socket socket = VariablesCompartidas.listener.accept(); Linea de prueba
                 HacerJugadores hacerJugadores = new HacerJugadores();//Inicio del hilo para comenzar a aceptar jugadores
                 hacerJugadores.start();
-                while (jugador == null && !VariablesCompartidas.comienzaPartida) {
+                while (jugador == null || !VariablesCompartidas.comienzaPartida) {
                 } //Para el hilo hasta que se une un jugador
                 // o la partida arranca
                 if (jugador == null) {
@@ -69,7 +69,7 @@ public class Server extends Thread{
                 }
                 while (jugador.isConnected()) {//Cuando se conecta el jugador en la entrada de datos
                     Scanner sc = new Scanner(jugador.getInputStream());
-                     PrintWriter pw = new PrintWriter(jugador.getOutputStream());
+                    PrintWriter pw = new PrintWriter(jugador.getOutputStream(), true);
                     if (sc.hasNextLine()) {
                         String pasword = Cifrado.descifrador(sc.nextLine());
                         if (Claves.claves.contains(pasword)){
@@ -86,12 +86,10 @@ public class Server extends Thread{
                             break;
                         } else {
                                 pw.println(false);
-                                sc.close();
-                                pw.close();
-                                jugador.close();
+                                break;
                         }
                     }else {
-
+                        System.out.println("No recibe nada");
                     }
                 }
             }
@@ -153,17 +151,14 @@ class PartidaHilo extends Thread {
                             int numero = Integer.parseInt(num);//Transforma cada string del array en
                             // interger para compararlo con la lista de los numeros sacados por el bingo uno a uno
                             //Si algun numero no esta en la lista devolverá un false al jugador
-                            if (numero == 0) {
-                                continue;
-                            }
-                            if (!VariablesCompartidas.numBingo.contains(numero)) {
-                                error = true;
+                            if (!VariablesCompartidas.numBingo.contains(numero) || numero != 0) {
+                                error = false;
                                 break;
                             }
                         }
                         if (error) {
                             Server.envioGlobal(false);
-                            System.out.println(false);
+                            System.out.println("Linea fallada" + false);
                         } else {
                             //Suma los puntos adquiridos. Si es el maximo acaba la partida
                             VariablesCompartidas.pointsJugadores.replace(socket, VariablesCompartidas.pointsJugadores.get(socket) + 1);

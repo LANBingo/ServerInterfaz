@@ -14,7 +14,7 @@ import java.util.*;
 public class Server extends Thread{
     private Socket jugador = null; // Socket del jugador que llama al servidor
      // Lista de socket que usaremos mas tarde
-     private Scanner sc;
+
      private PrintWriter pw;
     class HacerJugadores extends Thread{ //Clase para la Generacion de sockets de los jugadores
         @Override
@@ -70,7 +70,7 @@ public class Server extends Thread{
                     break;
                 }
                 while (jugador.isConnected()) {//Cuando se conecta el jugador en la entrada de datos
-                    sc = new Scanner(jugador.getInputStream());
+                    Scanner sc = new Scanner(jugador.getInputStream());
                     pw = new PrintWriter(jugador.getOutputStream());
                     if (sc.hasNextLine()) {
                         String pasword = Cifrado.descifrador(sc.nextLine());
@@ -92,6 +92,8 @@ public class Server extends Thread{
                                 pw.close();
                                 jugador.close();
                         }
+                    }else {
+
                     }
                 }
             }

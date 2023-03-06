@@ -86,16 +86,16 @@ public class Server extends Thread{
                             //new HomeController().setContadorJugadores();Sin implementar
                             VariablesCompartidas.countJuadores++;//La cuenta de jugadores aumenta en 1
                             break;
-                        }
-                    } else {
-                        if (expulsion >= 3) {
-                            pw.println();
-                            sc.close();
-                            pw.close();
-                            jugador.close();
-                        } else {
-                            expulsion++;
-                            pw.println(false);
+                        }else {
+                            if (expulsion >= 3) {
+                                pw.println();
+                                sc.close();
+                                pw.close();
+                                jugador.close();
+                            } else {
+                                expulsion++;
+                                pw.println(false);
+                            }
                         }
                     }
                 }
